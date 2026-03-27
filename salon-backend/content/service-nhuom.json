@@ -1,0 +1,19 @@
+{
+  "banner" : {
+    "title" : "Dịch Vụ Nhuộm Tóc",
+    "description" : "Hãy tham khảo và đừng bỏ lỡ những màu tóc đang hot nhất năm nay."
+  },
+  "items" : [ {
+    "imageUrl" : "http://localhost:8080/uploads/eabe6dba-9abf-4700-b02f-426ba16768df.png",
+    "title" : "erert",
+    "description" : "",
+    "price" : ""
+  } ],
+  "prices" : [ {
+    "label" : "cfhdxdh",
+    "price" : "123123"
+  }, {
+    "label" : "ae5wu",
+    "price" : "6578"
+  } ]
+}

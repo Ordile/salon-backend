@@ -1,0 +1,80 @@
+.footer {
+  background-color: #3a2e2a; /* nền nâu đậm */
+  color: #f5e6d0; /* chữ be vàng sáng */
+  padding-top: 50px;
+  margin-top: 80px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Bố cục chính 3 cột */
+.footer-container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+/* Mỗi phần */
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h3 {
+  color: #b5905e; /* vàng nhẹ */
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.footer-section p,
+.footer-section li {
+  line-height: 1.8;
+  color: #f5e6d0;
+  font-size: 0.95rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li:hover {
+  color: #cc3366;
+  transition: color 0.3s;
+}
+
+/* Mạng xã hội */
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  color: #f5e6d0;
+  margin-right: 15px;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #cc3366; /* hồng tím nổi bật */
+}
+
+/* Dòng bản quyền */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #b5905e;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  color: #d9c7b1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,130 @@
+.contact-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fafafa;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Tiêu đề */
+.contact-container h2 {
+  color: #CC3366;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Thông tin liên hệ */
+.contact-info {
+  text-align: center;
+  font-size: 15px;
+  color: #3a2e2a;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* Form chính */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Nhãn */
+.contact-form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Input và textarea đồng bộ */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  font-family: "Segoe UI", sans-serif;
+  resize: none;
+  box-sizing: border-box;
+}
+
+/* Hiệu ứng khi focus */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #CC3366;
+  box-shadow: 0 0 0 3px rgba(204, 51, 102, 0.15);
+  outline: none;
+}
+
+/* Textarea tự giãn và không bị thụt */
+.contact-form textarea {
+  min-height: 100px;
+  max-height: 400px;
+  overflow-y: hidden;
+  margin-bottom: 0 !important;
+}
+
+/* Loại bỏ margin mặc định giữa các nhóm input */
+.contact-form .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+/* Nút gửi và reset */
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* Nút chung */
+.contact-buttons button {
+  border: none;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Nút gửi */
+button.send {
+  background-color: #CC3366;
+  color: #fff;
+}
+button.send:hover {
+  background-color: #b02c58;
+}
+
+/* Nút reset */
+button.reset {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+button.reset:hover {
+  background-color: #555b61;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .contact-container {
+    padding: 20px;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+  }
+
+  .contact-buttons button {
+    width: 100%;
+  }
+}

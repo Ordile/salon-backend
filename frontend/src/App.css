@@ -1,0 +1,165 @@
+/* ===== Base layout ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-size: 17px;
+}
+
+body {
+  background-color: #ffffff;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+body[data-theme="light"] { background-color: #ffffff; color: #333; }
+body[data-theme="dark"]  { background-color: #1a1410; color: #f0e0cc; }
+
+/* main chứa nội dung */
+main { padding-top: 0; }
+
+/* Các trang không phải Home cần padding-top để tránh bị navbar che */
+main > *:not(.home-page) { padding-top: 64px; }
+
+/* Các trang có banner full-width tự xử lý padding trong banner */
+main > .service-detail,
+main > .service-page,
+main > .home-page { padding-top: 0; }
+
+/* ===== DARK MODE — toàn trang ===== */
+
+/* Nền trang */
+body[data-theme="dark"] .bg-light { background-color: #231d16 !important; }
+body[data-theme="dark"] .about-page { background-color: #1a1410; }
+body[data-theme="dark"] .about-content {
+  background-color: #2a2218 !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+body[data-theme="dark"] .service-page { background-color: #1a1410; }
+body[data-theme="dark"] .service-grid { background: #1a1410; }
+body[data-theme="dark"] .service-card { background: #2e2520; }
+body[data-theme="dark"] .home-page { background-color: #1a1410; }
+body[data-theme="dark"] .about-section { background-color: #1a1410; }
+body[data-theme="dark"] .services { background-color: #1a1410; }
+body[data-theme="dark"] .album { background-color: #1a1410; }
+body[data-theme="dark"] .contact-container { background: #2a2218 !important; }
+body[data-theme="dark"] .login-container { background-color: #1a1410 !important; }
+body[data-theme="dark"] .login-box { background: #2a2218 !important; }
+body[data-theme="dark"] .product-page { background-color: #1a1410; }
+body[data-theme="dark"] .product-card { background-color: #2e2520 !important; border-color: #3d3028 !important; }
+body[data-theme="dark"] .product-form { background: #2a2218 !important; border-color: #3d3028 !important; }
+body[data-theme="dark"] .appointment-form { background: #2a2218 !important; }
+body[data-theme="dark"] .footer { background-color: #110e0b; }
+
+/* Service banner */
+body[data-theme="dark"] .service-banner {
+  background: linear-gradient(135deg, #2a1a10 0%, #3d2018 50%, #4a1a28 100%) !important;
+}
+body[data-theme="dark"] .service-banner h1 { color: #ff6699 !important; }
+body[data-theme="dark"] .service-banner p { color: #c8b8a8 !important; }
+
+/* Promo */
+body[data-theme="dark"] .promo { background: linear-gradient(135deg, #1a0e14 0%, #3d1a2e 50%, #8a1a44 100%); }
+body[data-theme="dark"] .promo p { color: rgba(240, 220, 200, 0.88) !important; }
+
+/* ===== Chữ — override tất cả hardcode màu tối ===== */
+
+/* Headings */
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] h4,
+body[data-theme="dark"] h5,
+body[data-theme="dark"] h6 { color: #f0e0cc !important; }
+
+/* Paragraphs chung */
+body[data-theme="dark"] p { color: #c8b8a8 !important; }
+
+/* text-muted Bootstrap */
+body[data-theme="dark"] .text-muted { color: #a09080 !important; }
+
+/* About */
+body[data-theme="dark"] .about-text { color: #f0e0cc !important; }
+body[data-theme="dark"] .about-text p { color: #c8b8a8 !important; }
+body[data-theme="dark"] .about-banner p { color: #c8b8a8 !important; }
+
+/* Contact */
+body[data-theme="dark"] .contact-info { color: #c8b8a8 !important; }
+body[data-theme="dark"] .contact-container h2 { color: #ff8080 !important; }
+
+/* Service */
+body[data-theme="dark"] .service-banner h1 { color: #ff8080 !important; }
+body[data-theme="dark"] .service-banner p { color: #c8b8a8 !important; }
+body[data-theme="dark"] .section-title { color: #ff8080 !important; }
+body[data-theme="dark"] .card-body h3 { color: #f0e0cc !important; }
+body[data-theme="dark"] .card-body p { color: #c8b8a8 !important; }
+
+/* Product */
+body[data-theme="dark"] .page-title { color: #f0e0cc !important; }
+body[data-theme="dark"] .desc { color: #c8b8a8 !important; }
+body[data-theme="dark"] .price { color: #ff6699 !important; }
+
+/* Login */
+body[data-theme="dark"] .login-box h2 { color: #f0e0cc !important; }
+body[data-theme="dark"] .switch-text { color: #c8b8a8 !important; }
+
+/* Bootstrap cards */
+body[data-theme="dark"] .card { background-color: #2e2520 !important; border-color: #3d3028 !important; color: #f0e0cc !important; }
+body[data-theme="dark"] .card-title { color: #f0e0cc !important; }
+body[data-theme="dark"] .card-text { color: #c8b8a8 !important; }
+
+/* Labels */
+body[data-theme="dark"] label { color: #d0b898 !important; }
+
+/* Forms */
+body[data-theme="dark"] .form-control,
+body[data-theme="dark"] input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] select {
+  background-color: #2e2520 !important;
+  color: #f0e0cc !important;
+  border-color: #5a4a3a !important;
+}
+body[data-theme="dark"] .form-control:focus,
+body[data-theme="dark"] input:focus,
+body[data-theme="dark"] textarea:focus {
+  background-color: #3a2e28 !important;
+  color: #f0e0cc !important;
+  border-color: #ff6699 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255,102,153,0.25) !important;
+}
+
+/* ===== LIGHT MODE reset ===== */
+body[data-theme="light"] .bg-light { background-color: #f8f9fa !important; }
+body[data-theme="light"] .card { background-color: #fff; color: #333; border-color: #dee2e6; }
+body[data-theme="light"] .about-page { background-color: #fff; }
+body[data-theme="light"] .about-content { background-color: #fff4e8; }
+body[data-theme="light"] .login-container { background-color: #ffffff !important; }
+body[data-theme="light"] .login-box { background: #fff8ef !important; }
+body[data-theme="light"] .contact-container { background: #fafafa !important; }
+body[data-theme="light"] .product-card { background-color: #fff !important; }
+body[data-theme="light"] .product-form { background: #fdfdfd !important; border-color: #eee !important; }
+body[data-theme="light"] h1, body[data-theme="light"] h2,
+body[data-theme="light"] h3, body[data-theme="light"] h4,
+body[data-theme="light"] h5 { color: inherit; }
+body[data-theme="light"] p { color: inherit; }
+body[data-theme="light"] label { color: inherit !important; }
+body[data-theme="light"] .form-control,
+body[data-theme="light"] input,
+body[data-theme="light"] textarea {
+  background-color: #fff !important;
+  color: #333 !important;
+  border-color: #ced4da !important;
+}
+/* Giữ gradient promo ở light mode */
+body[data-theme="light"] .promo {
+  background: linear-gradient(135deg, #3A2E2A 0%, #5a2040 50%, #CC3366 100%) !important;
+}
+body[data-theme="light"] .promo h2 { color: #fff !important; }
+body[data-theme="light"] .promo p { color: rgba(255, 235, 220, 0.95) !important; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  main { padding-top: 0; }
+}
