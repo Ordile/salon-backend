@@ -161,7 +161,8 @@ export default function Login() {
     }
 
     const data = isLogin ? { username, password } : { username, email, password };
-    const url = isLogin ? "http://localhost:8080/api/auth/login" : "http://localhost:8080/api/auth/register";
+    const BASE = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+    const url = isLogin ? `${BASE}/auth/login` : `${BASE}/auth/register`;
 
     try {
       const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
