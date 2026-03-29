@@ -8,6 +8,9 @@ export default function AdminContacts() {
   const [appointments, setAppointments] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [sortField, setSortField] = useState("");
+  const [sortDir, setSortDir] = useState("asc");
   const navigate = useNavigate();
   const user = JSON.parse(sessionStorage.getItem("user") || "null");
 
@@ -24,30 +27,88 @@ export default function AdminContacts() {
       .finally(() => setLoading(false));
   }, []);
 
+  const handleSort = (field) => {
+    if (sortField === field) setSortDir(d => d === "asc" ? "desc" : "asc");
+    else { setSortField(field); setSortDir("asc"); }
+  };
+
+  const sortIcon = (field) => {
+    if (sortField !== field) return " ↕";
+    return sortDir === "asc" ? " ↑" : " ↓";
+  };
+
+  const applyFilter = (list, fields) => {
+    let result = list.filter(item =>
+      fields.some(f => (item[f] || "").toString().toLowerCase().includes(search.toLowerCase()))
+    );
+    if (sortField) {
+      result = [...result].sort((a, b) => {
+        const va = (a[sortField] || "").toString().toLowerCase();
+        const vb = (b[sortField] || "").toString().toLowerCase();
+        return sortDir === "asc" ? va.localeCompare(vb) : vb.localeCompare(va);
+      });
+    }
+    return result;
+  };
+
+  const filteredAppointments = applyFilter(appointments, ["name", "phone", "note"]);
+  const filteredContacts = applyFilter(contacts, ["name", "phone", "email", "address", "message"]);
+
+  const handleTabChange = (t) => { setTab(t); setSearch(""); setSortField(""); setSortDir("asc"); };
+
   return (
     <div className="admin-panel container">
       <h1 className="page-title">📬 Lịch hẹn & Liên hệ</h1>
 
-      <div className="admin-tabs" style={{ marginBottom: 24 }}>
-        <button className={`admin-tab${tab === "appointment" ? " active" : ""}`} onClick={() => setTab("appointment")}>
+      <div className="admin-tabs" style={{ marginBottom: 16 }}>
+        <button className={`admin-tab${tab === "appointment" ? " active" : ""}`} onClick={() => handleTabChange("appointment")}>
           🗓️ Lịch hẹn ({appointments.length})
         </button>
-        <button className={`admin-tab${tab === "contact" ? " active" : ""}`} onClick={() => setTab("contact")}>
+        <button className={`admin-tab${tab === "contact" ? " active" : ""}`} onClick={() => handleTabChange("contact")}>
           📩 Liên hệ ({contacts.length})
         </button>
+      </div>
+
+      {/* Thanh tìm kiếm */}
+      <div style={{ display: "flex", gap: 10, marginBottom: 16, alignItems: "center", flexWrap: "wrap" }}>
+        <input
+          type="text"
+          placeholder={tab === "appointment" ? "🔍 Tìm theo tên, SĐT, ghi chú..." : "🔍 Tìm theo tên, SĐT, email, nội dung..."}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          style={{
+            padding: "8px 14px", borderRadius: 8, border: "1px solid #ccc",
+            fontSize: 14, minWidth: 280, flex: 1, maxWidth: 420
+          }}
+        />
+        {search && (
+          <button onClick={() => setSearch("")}
+            style={{ padding: "8px 12px", borderRadius: 8, border: "1px solid #ccc", cursor: "pointer", background: "#f5f5f5" }}>
+            ✕ Xóa
+          </button>
+        )}
+        <span style={{ fontSize: 13, color: "#888" }}>
+          {tab === "appointment" ? filteredAppointments.length : filteredContacts.length} kết quả
+        </span>
       </div>
 
       {loading ? <p>Đang tải...</p> : (
         <>
           {tab === "appointment" && (
             <div className="admin-table-wrap">
-              {appointments.length === 0 ? <p>Chưa có lịch hẹn nào.</p> : (
+              {filteredAppointments.length === 0 ? <p>Không tìm thấy kết quả.</p> : (
                 <table className="admin-table">
                   <thead>
-                    <tr><th>#</th><th>Họ tên</th><th>Điện thoại</th><th>Ngày giờ</th><th>Ghi chú</th></tr>
+                    <tr>
+                      <th>#</th>
+                      <th onClick={() => handleSort("name")} style={{ cursor: "pointer" }}>Họ tên{sortIcon("name")}</th>
+                      <th onClick={() => handleSort("phone")} style={{ cursor: "pointer" }}>Điện thoại{sortIcon("phone")}</th>
+                      <th onClick={() => handleSort("appointmentDate")} style={{ cursor: "pointer" }}>Ngày giờ{sortIcon("appointmentDate")}</th>
+                      <th>Ghi chú</th>
+                    </tr>
                   </thead>
                   <tbody>
-                    {appointments.map((a, i) => (
+                    {filteredAppointments.map((a, i) => (
                       <tr key={a.id}>
                         <td>{i + 1}</td>
                         <td>{a.name}</td>
@@ -64,13 +125,20 @@ export default function AdminContacts() {
 
           {tab === "contact" && (
             <div className="admin-table-wrap">
-              {contacts.length === 0 ? <p>Chưa có liên hệ nào.</p> : (
+              {filteredContacts.length === 0 ? <p>Không tìm thấy kết quả.</p> : (
                 <table className="admin-table">
                   <thead>
-                    <tr><th>#</th><th>Họ tên</th><th>Điện thoại</th><th>Email</th><th>Địa chỉ</th><th>Nội dung</th></tr>
+                    <tr>
+                      <th>#</th>
+                      <th onClick={() => handleSort("name")} style={{ cursor: "pointer" }}>Họ tên{sortIcon("name")}</th>
+                      <th onClick={() => handleSort("phone")} style={{ cursor: "pointer" }}>Điện thoại{sortIcon("phone")}</th>
+                      <th onClick={() => handleSort("email")} style={{ cursor: "pointer" }}>Email{sortIcon("email")}</th>
+                      <th>Địa chỉ</th>
+                      <th>Nội dung</th>
+                    </tr>
                   </thead>
                   <tbody>
-                    {contacts.map((c, i) => (
+                    {filteredContacts.map((c, i) => (
                       <tr key={c.id}>
                         <td>{i + 1}</td>
                         <td>{c.name}</td>
