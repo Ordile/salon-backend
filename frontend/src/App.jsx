@@ -21,6 +21,7 @@ import AdminHomeContent from "./components/AdminHomeContent";
 import AdminServiceDetail from "./components/AdminServiceDetail";
 import AdminOrders from "./components/AdminOrders";
 import AdminContacts from "./components/AdminContacts";
+import AdminUsers from "./components/AdminUsers";
 import { CartProvider } from "./CartContext";
 import "./App.css";
 
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/admin/product" element={<ProductAdmin />} />
             <Route path="/admin/orders" element={<AdminOrders />} />
             <Route path="/admin/contacts" element={<AdminContacts />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/promo" element={<AdminPromo />} />
             <Route path="/admin/home-content" element={<AdminHomeContent />} />
             <Route path="/admin/service-detail" element={<AdminServiceDetail />} />

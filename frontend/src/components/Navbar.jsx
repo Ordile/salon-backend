@@ -94,6 +94,7 @@ export default function Navbar() {
                   <li><Link to="/admin/promo" onClick={closeAll}>Khuyến mãi</Link></li>
                   <li><Link to="/admin/home-content" onClick={closeAll}>Trang chủ</Link></li>
                   <li><Link to="/admin/service-detail" onClick={closeAll}>Dịch vụ</Link></li>
+                  <li><Link to="/admin/users" onClick={closeAll}>Khách hàng</Link></li>
                 </ul>
               </li>
             )}
